@@ -1,0 +1,151 @@
+{{ if .steps }}
+<hr class="py-8">
+<div class="how-section container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+
+    {{ with .title }}
+        <h2 class="mb-4 text-3xl sm:text-4xl font-extrabold tracking-tight text-center text-gray-900 dark:text-white">{{ . | markdownify }}</h2>
+    {{ end }}
+    {{ with .sub }}
+        <p class="mb-8 sm:mb-12 text-lg text-center text-gray-600 dark:text-gray-400">{{ . | markdownify }}</p>
+    {{ end }}
+
+    <div class="buttonWrapper flex justify-center items-center space-x-2 sm:space-x-4 mb-8 sm:mb-10" role="tablist" aria-label="{{ .title | default "Steps" }}">
+        {{ range $i, $p := .steps }}
+            <button
+                class="tab-button h-10 w-10 sm:h-12 sm:w-12 flex items-center justify-center rounded-full border-2 font-semibold text-lg transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800 focus:ring-blue-500 {{ if eq $i 0 }}bg-blue-600 border-blue-600 text-white dark:bg-blue-500 dark:border-blue-500 dark:text-white shadow-md{{ else }}bg-white border-gray-300 text-gray-600 hover:bg-gray-100 hover:border-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:border-gray-500{{ end }}"
+                data-id="{{ $p.id }}"
+                role="tab"
+                aria-controls="step-content-{{ $p.id }}"
+                aria-selected="{{ if eq $i 0 }}true{{ else }}false{{ end }}"
+                id="step-tab-{{ $p.id }}">
+                {{ $p.id }} {{/* Display the step ID (number) */}}
+            </button>
+
+            {{ if ne $i (sub (len $.steps) 1) }}
+                <div class="hidden sm:block h-px flex-1 bg-gray-300 dark:bg-gray-600 max-w-12"></div>
+            {{ end }}
+        {{ end }}
+    </div>
+
+
+    <div class="contentWrapper relative overflow-hidden min-h-[350px] sm:min-h-[400px]">
+        {{ range $i, $p := .steps }}
+            <div
+                class="content-step absolute inset-0 transition-opacity duration-500 ease-in-out {{ if ne $i 0 }}opacity-0 pointer-events-none{{ else }}opacity-100{{ end }}"
+                id="step-content-{{ $p.id }}"
+                role="tabpanel"
+                aria-labelledby="step-tab-{{ $p.id }}"
+                {{ if ne $i 0 }}hidden{{ end }}> {{/* Use hidden for accessibility */}}
+
+                <div class="text-center max-w-4xl mx-auto px-4">
+
+                    <h3 class="text-2xl sm:text-3xl font-semibold mb-3 sm:mb-4 text-gray-800 dark:text-gray-100">{{ .title | markdownify }}</h3>
+                    {{ with .sub }}
+                        <p class="mb-5 sm:mb-6 text-base sm:text-lg text-gray-600 dark:text-gray-400">{{ . | markdownify }}</p>
+                    {{ end }}
+
+                    {{ with .img }}
+                        <figure class="mb-6 flex justify-center">
+                            <div class="max-h-64 sm:max-h-80 md:max-h-96 w-full max-w-xl flex justify-center items-center bg-gray-100 dark:bg-gray-800 rounded-lg shadow overflow-hidden">
+                                <img class="object-contain rounded-lg shadow-lg h-full w-auto p-1" src="{{ . | absURL }}" loading="lazy" alt="{{ printf "Illustration for %s" $p.title | default "Step illustration" }}">
+                            </div>
+                        </figure>
+                    {{ end }}
+                </div>
+            </div>
+        {{ end }}
+    </div>
+</div>
+<hr class="py-8">
+
+<script>
+function setupHowSectionTabs() {
+  const howSection = document.querySelector('.how-section');
+  if (!howSection) {
+    console.error("Could not find '.how-section' for tab interaction.");
+    return;
+  }
+
+  const buttonWrapper = howSection.querySelector('.buttonWrapper');
+  const contentWrapper = howSection.querySelector('.contentWrapper');
+
+  if (!buttonWrapper || !contentWrapper) {
+    console.warn("Tab components (.buttonWrapper or .contentWrapper) not found within the section:", howSection);
+    return;
+  }
+
+  const buttons = buttonWrapper.querySelectorAll('.tab-button');
+  const contents = contentWrapper.querySelectorAll('.content-step');
+
+  const activeBtnClasses = ['bg-blue-600', 'border-blue-600', 'text-white', 'dark:bg-blue-500', 'dark:border-blue-500', 'dark:text-white', 'shadow-md'];
+  const inactiveBtnClasses = ['bg-white', 'border-gray-300', 'text-gray-600', 'hover:bg-gray-100', 'hover:border-gray-400', 'dark:bg-gray-700', 'dark:border-gray-600', 'dark:text-gray-300', 'dark:hover:bg-gray-600', 'dark:hover:border-gray-500'];
+
+  buttonWrapper.addEventListener('click', (event) => {
+    const clickedButton = event.target.closest('.tab-button');
+    if (!clickedButton || clickedButton.getAttribute('aria-selected') === 'true') return;
+
+    const targetId = clickedButton.getAttribute('data-id');
+    if (!targetId) return;
+
+    const targetContentId = `step-content-${targetId}`;
+
+    buttons.forEach(button => {
+      const isTarget = button === clickedButton;
+      button.setAttribute('aria-selected', isTarget ? 'true' : 'false');
+
+      if (isTarget) {
+        button.classList.remove(...inactiveBtnClasses);
+        button.classList.add(...activeBtnClasses);
+      } else {
+        button.classList.remove(...activeBtnClasses);
+        button.classList.add(...inactiveBtnClasses);
+      }
+    });
+
+    let targetContentHeight = 300;
+
+    contents.forEach(content => {
+      const isTarget = content.id === targetContentId;
+
+      if (isTarget) {
+        content.removeAttribute('hidden');
+        requestAnimationFrame(() => {
+          content.classList.remove('opacity-0', 'pointer-events-none');
+          content.classList.add('opacity-100');
+          targetContentHeight = content.scrollHeight;
+          contentWrapper.style.height = `${targetContentHeight}px`;
+        });
+      } else {
+        content.classList.add('opacity-0', 'pointer-events-none');
+        content.classList.remove('opacity-100');
+        setTimeout(() => {
+          if (content.id !== targetContentId) {
+            content.setAttribute('hidden', '');
+          }
+        }, 500);
+      }
+    });
+
+    contentWrapper.style.transition = 'height 0.4s ease-in-out';
+  });
+
+  function setInitialHeight() {
+    const activeContent = contentWrapper.querySelector('.content-step:not([hidden])');
+    const fallback = contents[0];
+    requestAnimationFrame(() => {
+      contentWrapper.style.height = `${(activeContent || fallback).scrollHeight}px`;
+    });
+  }
+
+  if (document.readyState === 'complete') {
+    setInitialHeight();
+  } else {
+    window.addEventListener('load', setInitialHeight);
+  }
+}
+
+// Call this after the DOM is ready
+document.addEventListener('DOMContentLoaded', setupHowSectionTabs);
+</script>
+
+{{ end }}

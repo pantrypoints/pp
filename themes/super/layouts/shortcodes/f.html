@@ -1,0 +1,8 @@
+{{ $f := .Get "f" | default "" }}
+
+<div class="box bg-gray-100 dark:bg-gray-800 p-4 shadow border rounded-lg text-sm">
+  <span class="font-semibold text-xs tracking-wide">
+    {{ i18n "note" }}
+  </span>
+  <p>{{ $f | markdownify }}</p>
+</div>

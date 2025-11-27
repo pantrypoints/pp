@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/*@font-face {
+  font-family: 'Baloo Bhaijaan 2';
+  src: url('/fonts/baloomed.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}*/
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('/fonts/Nunito-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('/fonts/Nunito-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: bold;
+}
+
+
+body {
+    font-family: 'Nunito';
+}
+
+
+
+cite {
+    line-height: 1.25rem;
+    color: darkgray;
+    text-align: right !important;
+    text-align-last: justify !important;
+    font-style: italic;
+    font-size: 14px;
+    display: block; /* Or display: inline-block; */
+}
+
+
+th {
+    background-color: 'gray';
+}
+
+@keyframes fadeSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-slide {
+  animation: fadeSlide 0.1s ease-out;
+}
+
+.toc ul {
+  @apply list-none pl-4;
+}
+.toc li {
+  @apply mb-1;
+}
+.toc li a {
+  @apply no-underline text-gray-700 hover:text-blue-600;
+}
+
+
+
+.toc ul {
+  list-style: none;
+  padding-left: 0.5rem;
+}
+.toc li {
+  margin-bottom: 0.25rem;
+}
+.toc a {
+  text-decoration: none;
+  color: #374151; /* gray-700 */
+  font-size: 0.875rem;
+}
+.toc a:hover {
+  color: #2563eb; /* blue-600 */
+}
+
+
+.fly-in {
+            opacity: 0; /* Start invisible */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Smooth transition for opacity and transform */
+        }
+        .fly-in-left {
+            transform: translateX(-100%); /* Start off-screen to the left */
+        }
+        .fly-in-right {
+            transform: translateX(100%); /* Start off-screen to the right */
+        }
+        .is-visible {
+            opacity: 1; /* Become visible */
+            transform: translateX(0); /* Move to original position */
+        }
+
+
+        .ani {
+            opacity: 0; /* Start invisible */
+            transition: opacity 1s ease-in-out; /* Smooth transition for opacity */
+        }
+
+        /* --- Visible State (Applied by JS) --- */
+        .is-visible {
+            opacity: 1; /* Become visible */
+            transform: translateX(0); /* Move fly-in elements to original position */
+            /* Opacity is handled for .ani elements by this rule too */
+        }
+
+
+
+.pagination {
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+  gap: 0.25rem;
+  margin-top: 1rem;
+}
+
+.page-item {
+  display: inline;
+}
+
+.page-link {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  color: #374151; /* gray-700 */
+  background-color: #ffffff;
+  border: 1px solid #d1d5db; /* gray-300 */
+  border-radius: 0.375rem; /* rounded-md */
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.page-link:hover {
+  background-color: #eff6ff; /* blue-50 */
+  color: #1d4ed8; /* blue-700 */
+}
+
+.page-item.disabled .page-link {
+  pointer-events: none;
+  cursor: not-allowed;
+  color: #9ca3af; /* gray-400 */
+  background-color: #f3f4f6; /* gray-100 */
+  border-color: #e5e7eb; /* gray-200 */
+}
+
+.page-item.active .page-link {
+  background-color: #2563eb; /* blue-600 */
+  color: white;
+  border-color: #2563eb;
+}
+
+
+blockquote {
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 1.1;
+  font-style: normal !important;
+  word-break: break-word;
+  color: mediumseagreen !important;
+  border-left-color: seagreen !important;
+}
+
+strong {color: mediumseagreen !important;}
+
+/*a {color: teal !important;}*/
+
+a {
+  hover:text-green-600;
+}

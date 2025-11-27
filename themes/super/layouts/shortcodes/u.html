@@ -1,0 +1,16 @@
+{{ $u := .Get "u" | default "" }}
+{{ $d := .Get "d" | default "" }}
+
+<details id="update" class="pl-6 pr-4 pb-4 mt-4 mb-2 bg-gray-100 dark:bg-gray-700 shadow rounded toc" open data-sal="slide-right">
+  <summary class="flex items-center font-bold py-2 cursor-pointer justify-between select-none text-black dark:text-white">
+      <span>{{ i18n "update" }} {{ $d }}</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <polyline points="6 9 12 15 18 9"></polyline>
+     </svg>
+  </summary>
+  <div class="text-sm">
+    {{ $u | markdownify }}
+  </div>
+</details>
+

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+
+  {{ partial "head.html" . }}
+
+  <body class="relative flex flex-col min-h-screen">
+
+<!-- Scroll to Top SVG -->
+<button 
+  onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+  class="fixed bottom-8 left-8 z-50 p-2 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+  aria-label="Scroll to top"
+>
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    width="28" 
+    height="28" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    stroke-width="4" 
+    stroke-linecap="round" 
+    stroke-linejoin="round" 
+    class="text-teal-600 dark:text-yellow-400"
+  >
+    <path d="m18 9-6-6-6 6"/>
+    <path d="M12 3v14"/>
+    <path d="M5 21h14"/>
+  </svg>
+</button>
+    
+    <!-- flex-1 -->
+    <main class="dark:bg-black flex-grow">
+    {{ partial "header.html" . }}
+
+        {{ block "main" . }}{{ end }}
+    </main>
+    
+    {{ partial "footer.html" . }}
+
+       <!--  <div class="my-10" x-data="{ count: 0 }">
+        <h2> Let's check if AlpineJS is working</h2>
+        <button type="button" class="bg-black border-2 p-1 text-white" x-on:click="count++">Increment</button>
+        <span x-text="count"></span> </div> -->
+   <!-- <script src="/js/cdn.min.js" defer></script> -->
+  
+    {{ $jsFiles := slice (resources.Get "/js/main.js") (resources.Get "/js/search.js") }}
+    {{ $js := $jsFiles | resources.Concat "js/bundle.js" | js.Build | minify }}
+
+<script src="{{ $js.RelPermalink }}" defer></script>
+
+<script type="text/javascript">
+    // Mobile menu toggle
+  const menuToggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("menu");
+  const iconOpen = document.getElementById("icon-open");
+  const iconClose = document.getElementById("icon-close");
+
+  menuToggle.addEventListener("click", () => {
+    menu.classList.toggle("hidden");
+    iconOpen.classList.toggle("hidden");
+    iconClose.classList.toggle("hidden");
+  });
+
+  // Dark mode toggle
+  // const toggleDarkMode = () => {
+  //   document.documentElement.classList.toggle("dark");
+  //   localStorage.theme = document.documentElement.classList.contains("dark") ? "dark" : "light";
+  // };
+
+  // // Load saved dark mode preference
+  // if (
+  //   localStorage.theme === "dark" ||
+  //   (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
+  // ) {
+  //   document.documentElement.classList.add("dark");
+  // } else {
+  //   document.documentElement.classList.remove("dark");
+  // }
+
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/6306798e37898912e964f594/default';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+})();
+  
+</script>
+  </body>
+</html>
+

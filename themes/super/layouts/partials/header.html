@@ -1,0 +1,74 @@
+<header class="bg-none !bg-transparent !important">
+  <div class="container mx-auto px-4">
+    <nav class="bg-none !bg-transparent flex items-center justify-between py-4">
+
+      <!-- Site title -->
+
+        <a href="{{ .Site.Home.RelPermalink }}" class="pl-2 font-bold text-blue-600">
+          <img src="/icons/pantry50.png" alt="Pantrypoints icon">
+        </a>        
+
+      <!-- Hamburger Toggle Button (Mobile) -->
+      <button id="menu-toggle" class="md:hidden block text-gray-600 focus:outline-none" aria-label="Toggle Menu">
+        <svg id="icon-open" class="w-6 h-6 block" fill="none" stroke="currentColor" stroke-width="2"
+          viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2"
+             viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <!-- Nav Items -->
+      <div id="menu" class="hidden w-full md:flex md:items-center md:space-x-6 md:w-auto">
+        {{ range .Site.Menus.main }}
+          <a href="{{ .URL | relLangURL }}"
+             class="block uppercase py-2 text-xs tracking-tighter dark:text-white text-gray-500 hover:text-blue-600">
+            {{ .Name }}
+          </a>
+        {{ end }}
+      </div>
+
+      <!-- Language Switcher -->
+      <details class="relative group ml-4">
+        <summary class="flex items-center cursor-pointer list-none p-2 hover:bg-gray-100 rounded">
+          <img src="{{ .Site.Language.Params.flag | relURL }}" alt="{{ .Site.Language.Params.languageName }} flag" class="w-5 h-auto mr-2">
+          <svg class="ml-1 w-4 h-4 transform transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <div class="absolute z-10 mt-2 w-40 bg-white rounded-md shadow-lg border border-gray-200 hidden group-open:block">
+          
+      {{ range .Site.Home.AllTranslations }}
+        {{ $lang := .Site.Language }}
+        <a href="{{ .Permalink }}"
+           class="flex items-center px-4 py-2 text-sm hover:bg-gray-100 {{ if eq $.Site.Language.Lang $lang.Lang }}bg-gray-100 font-semibold{{ else }}text-gray-700{{ end }}">
+          {{ with $lang.Params.flag }}
+            <img src="{{ . | relURL }}" alt="{{ $lang.LanguageName }} flag" class="w-5 h-auto mr-2">
+          {{ end }}
+          {{ $lang.LanguageName }}
+        </a>
+      {{ end }}
+
+        </div>
+      </details>
+
+      <button class="ml-4 text-black dark:text-yellow p-2 rounded">
+      <a href="{{ "search" | relLangURL }}" class="nav-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0091ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </a></button>
+
+      <!-- Dark Mode Button -->
+      <button onclick="toggleDarkMode()" class="ml-4 text-black dark:text-white p-2 rounded">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" class="lucide-lightbulb-icon stroke-current text-blue-500 dark:text-yellow-400">
+          <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/>
+          <path d="M9 18h6"/><path d="M10 22h4"/>
+        </svg>
+      </button>
+
+    </nav>
+  </div>
+</header>

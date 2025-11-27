@@ -1,0 +1,122 @@
+- note: Note
+- footnote: Footnote
+- updates: Aktualisierungen
+- building: Wir bauen eine neue Wissenschaft und neue Systeme für eine bessere Realität
+- follow: Folgen Sie uns oder unterstützen Sie uns!
+- by: Written by
+- forph: Für Spenden auf den Philippinen
+- forvn: Für Spenden in Vietnam
+- forsg: Für Spenden in Singapur
+- check: Check out our books
+- sendcomments: Send us your comments!
+- prereg: Pre-Registration
+- enterdetails: Enter your details so we can inform you when a server will be ready for your location
+- email: Email Address
+- name: Your Name
+- country: Your Country
+- city: Your City
+- age: Your Age
+- gender: Your Gender
+- contact: Contact
+- contactus: Contact Us
+
+
+# Content
+- id: postedOnDate
+  translation: "Gepostet am {{ . }}"
+- id: lastModified
+  translation: "(Zuletzt geändert am {{ . }})"
+- id: translationsLabel
+  translation: "Andere Sprachen: "
+- id: translationsSeparator
+  translation: ", "
+- id: readMore
+  translation: "Mehr"
+- id: morePosts
+  translation: "Mehr Posts"
+- id: olderPosts
+  translation: "Ältere Posts"
+- id: newerPosts
+  translation: "Neuere Posts"
+- id: previousPost
+  translation: "Letzter Post"
+- id: nextPost
+  translation: "Nächster Post"
+- id: readTime
+  translation: "Minuten"
+- id: words
+  translation: "Wörter"
+
+# Date
+- id: January
+  translation: "Januar"
+- id: January
+  translation: "Januar"
+- id: February
+  translation: "Februar"
+- id: March
+  translation: "März"
+- id: April
+  translation: "April"
+- id: May
+  translation: "Mai"
+- id: June
+  translation: "Juni"
+- id: July
+  translation: "Juli"
+- id: August
+  translation: "August"
+- id: September
+  translation: "September"
+- id: October
+  translation: "Oktober"
+- id: November
+  translation: "November"
+- id: December
+  translation: "Dezember"
+
+# 404 page
+- id: pageNotFound
+  translation: "Ups, diese Seite existiert nicht. (404 Error)"
+
+# Footer
+- id: poweredBy # Accepts HTML
+  translation: '<a href="https://gohugo.io">Hugo v{{ .Site.Hugo.Version }}</a> angetrieben &nbsp;&bull;&nbsp; Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> angepasst von <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>'
+
+# Navigation
+- id: toggleNavigation
+  translation: "Navigation"
+- id: languageSwitcherLabel
+  translation: "Sprache"
+- id: gcseLabelShort
+  translation: "Suche"
+- id: gcseLabelLong
+  translation: "Suche {{ .Site.Title }}"
+- id: gcseClose
+  translation: "Schließen"
+
+# Staticman
+- id: noComment
+  translation: "Kein Kommentar"
+- id: oneComment
+  translation: "Kommentar"
+- id: moreComment
+  translation: "Kommentare"
+- id: useMarkdown
+  translation: "Sie können Markdown-Syntax verwenden"
+- id: yourName
+  translation: "Ihr Name"
+- id: yourEmail
+  translation: "Ihre Emailadresse"
+- id: yourWebsite
+  translation: "Ihre Website"
+
+# Delayed Disqus
+- id: show
+  translation: "Zeige"
+- id: comments
+  translation: "Kommentare" 
+
+# Related posts
+- id: seeAlso
+  translation: "Siehe auch"

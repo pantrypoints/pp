@@ -1,0 +1,11 @@
+{{ $s := .Get "s" | default "" }}
+{{ $size := .Get "size" | default "" }}
+{{ $a := .Get "a" | default "Image" }}
+{{ $c := .Get "c" | default "" }}
+
+<figure class="text-center">
+	<img src="{{ $s }}" alt="{{ $a }}" class="rounded-lg shadow mx-auto {{ $size }}" loading="lazy">
+	{{ if $c }}
+		<figcaption>{{ $c | markdownify }}</figcaption>
+	{{ end }}
+</figure>

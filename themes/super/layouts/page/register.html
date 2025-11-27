@@ -1,0 +1,218 @@
+
+
+{{ define "main" }}
+
+    <style>
+        /* Custom styles for the dropdown to hide scrollbar while keeping it functional */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+    </style>
+
+
+
+  <div class="w-screen py-8 sm:py-4">
+      <div class="mx-auto max-w-7xl">
+          <div class="space-y-8 lg:space-y-0 lg:grid lg:grid-cols-12 lg:gap-8">
+              <div class="px-6 sm:text-center md:mx-auto md:max-w-2xl lg:col-span-6 lg:flex lg:items-center lg:text-left">
+                  <div class="space-y-8">
+                      <div class="space-y-4">
+                          <div class="space-y-2">
+                              <span class="rounded-full uppercase bg-cyan-500 px-3 py-0.5 text-sm font-semibold leading-5 text-white">
+                                  {{ i18n "prereg" }}
+                              </span>
+                              <h1 class="text-4xl font-bold tracking-tight dark:text-white text-black sm:text-5xl md:text-6xl pt-4 pb-6">                
+                                {{ i18n "waitlist" }}
+                                {{ with .Params.wow }}
+                                  <span
+                                      class="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-800">{{ . }}
+                                  </span>
+                                {{ end }}                                     
+                              </h1>
+
+                                <h3 class="text-xl font-bold tracking-tight dark:text-white">{{ i18n "enterdetails" }}</h3>
+                            
+                            <!-- Registration Form -->
+                            <form class="p-6 space-y-4" id="comment" action="https://usebasin.com/f/2468cfc045f0" method="post" target="_blank">
+
+                                <div class="">
+                                    <div class="py-2">
+                                        <label for="name" class="">{{ i18n "name" }}</label>
+                                        <input id="name" name="text" type="text" required
+                                            class="block w-full rounded border border-gray-600 px-3 py-2 focus:border-teal-500 focus:outline-none focus:ring-teal-500"
+                                            placeholder="Name">
+                                    </div>
+                                    <div class="py-2">
+                                        <label for="email-address" class="">{{ i18n "email" }}</label>
+                                        <input id="email-address" name="email" type="email" autocomplete="email" required
+                                            class="block w-full rounded border border-gray-600 px-3 py-2 focus:border-teal-500 focus:outline-none focus:ring-teal-500"
+                                            placeholder="Email address">
+                                    </div>
+
+                                    <div class="relative w-full max-w-sm py-2">
+                                        <!-- Dropdown button with selected country -->
+                                        <label for="country" class="">{{ i18n "country" }}</label>
+                                        <button id="dropdown-button" class="flex items-center justify-between w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
+                                            <span id="selected-country-text">Loading countries...</span>
+                                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                            </svg>
+                                        </button>
+
+                                        <!-- Dropdown menu container -->
+                                        <div id="dropdown-menu" class="absolute z-10 hidden w-full mt-2 bg-white border border-gray-300 rounded-lg shadow-xl max-h-60 overflow-y-auto scrollbar-hide">
+                                            <!-- Search input -->
+                                            <div class="p-2">
+                                                <input id="search-input" type="text" placeholder="Search..." class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500">
+                                            </div>
+
+                                            <!-- Country list -->
+                                            <ul id="country-list" class="py-1">
+                                                <!-- Country list items will be generated by JavaScript -->
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="py-2">
+                                        <label for="city" class="">{{ i18n "city" }}</label>
+                                        <input id="city" name="city" type="text" required
+                                            class="block w-full rounded border border-gray-600 px-3 py-2 focus:border-teal-500 focus:outline-none focus:ring-teal-500"
+                                            placeholder="Your City">
+                                    </div>
+
+                                </div>
+
+
+
+                                <div>
+                                    <button type="submit"
+                                            class="group relative flex w-full justify-center rounded-md border border-transparent bg-teal-800 py-2 px-4 text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">
+                                        Register
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+                </div>
+              </div>
+
+              <div class="flex items-center w-full col-span-6">
+                  <div class="px-6 h-96 lg:h-100% w-full max-w-2xl col-span-6 flex items-center mx-auto">
+                      <div style="width: 100%; height: 100%;">
+                          <div style="width: 100%; height: 100%;">
+                              <iframe frameborder="0" allowfullscreen="1"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                  width="100%" height="100%"
+                                  src="https://www.youtube.com/embed/{{ .Params.youtube }}?autoplay=0&amp;mute=0&amp;controls=0&"
+                                  id="widget2">
+                              </iframe>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+    <script>
+        let countries = [];
+        const dropdownButton = document.getElementById('dropdown-button');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        const selectedCountryText = document.getElementById('selected-country-text');
+        const searchInput = document.getElementById('search-input');
+        const countryList = document.getElementById('country-list');
+
+        let isDropdownOpen = false;
+
+        // Function to fetch countries from an online API
+        async function fetchCountries() {
+            try {
+                const response = await fetch('https://restcountries.com/v3.1/all?fields=name');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                countries = data.map(country => country.name.common).sort();
+                selectedCountryText.textContent = 'Select a Country';
+            } catch (error) {
+                console.error('Error fetching countries:', error);
+                selectedCountryText.textContent = 'Error loading countries';
+            }
+        }
+
+        // Function to render the country list
+        function renderCountryList(filter = '') {
+            countryList.innerHTML = '';
+            const filteredCountries = countries.filter(country => 
+                country.toLowerCase().includes(filter.toLowerCase())
+            );
+
+            if (filteredCountries.length === 0) {
+                const noResultItem = document.createElement('li');
+                noResultItem.className = 'px-4 py-2 text-sm text-gray-500';
+                noResultItem.textContent = 'No results found.';
+                countryList.appendChild(noResultItem);
+            } else {
+                filteredCountries.forEach(country => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'px-4 py-2 text-gray-700 cursor-pointer hover:bg-gray-200';
+                    listItem.textContent = country;
+                    listItem.addEventListener('click', () => {
+                        selectedCountryText.textContent = country;
+                        isDropdownOpen = false;
+                        dropdownMenu.classList.add('hidden');
+                    });
+                    countryList.appendChild(listItem);
+                });
+            }
+        }
+
+        // Toggle dropdown visibility
+        dropdownButton.addEventListener('click', () => {
+            if (countries.length === 0) {
+                selectedCountryText.textContent = 'Loading...';
+                return;
+            }
+            
+            isDropdownOpen = !isDropdownOpen;
+            if (isDropdownOpen) {
+                dropdownMenu.classList.remove('hidden');
+                renderCountryList();
+                searchInput.focus();
+            } else {
+                dropdownMenu.classList.add('hidden');
+            }
+        });
+
+        // Filter the list as the user types
+        searchInput.addEventListener('input', (e) => {
+            renderCountryList(e.target.value);
+        });
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', (e) => {
+            if (!dropdownButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                isDropdownOpen = false;
+                dropdownMenu.classList.add('hidden');
+            }
+        });
+
+        // Fetch countries on page load
+        fetchCountries();
+    </script>
+
+
+{{ end }}

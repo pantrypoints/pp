@@ -1,0 +1,14 @@
+<a href="{{ .Permalink }}">
+  <div style="background-color: {{ .Params.c }}; transition: transform 0.3s ease-in-out;" class="mx-auto flex items-center justify-center min-h-[200px] rounded-lg shadow hover:scale-110 w-full text-gray-800 dark:text-white">
+      <div class="text-center p-6">
+        <h3 class="text-3xl font-bold leading-6 !text-white !dark:text-white">{{ .Title }}</h3>
+        <hr class="my-2 border-white opacity-50 w-2/3 mx-auto dark:border-gray-700">
+        <p class="text-sm !text-white !dark:text-white">{{ .Params.heading }}</p>
+        {{ if .Params.showdate }}
+          <div class="leading-none text-gray-500 dark:text-gray-400 text-sm">
+            {{ .Params.date.Format "January 2, 2006"  }}
+          </div>
+        {{- end }}
+      </div>
+  </div>
+</a>

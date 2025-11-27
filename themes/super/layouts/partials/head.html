@@ -1,0 +1,137 @@
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C3LQ2SVGHJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-C3LQ2SVGHJ');
+  </script>
+
+  
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="yandex-verification" content="eef333a56a2c814a" />
+
+  <title>{{ if .IsHome }} {{ .Site.Title }} {{ else }} {{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
+
+  {{- with .Params.Author }}
+    <meta name="author" content="{{ . }}" />
+  {{ end -}}
+  
+  {{- with .Params.Writer }}
+    <meta name="author" content="{{ .name }}" />
+  {{ end -}}
+
+  {{ with .Params.contributors }}          
+    {{- range . }}
+      <meta name="author" content="{{ . }}" />
+    {{- end }}
+  {{- end }}
+
+  {{ template "_internal/opengraph.html" . }}
+
+  {{- with .Params.Image -}}
+    <meta property="og:image" content="{{ . | absURL }}"/>
+  {{- end -}}
+
+  {{ template "_internal/twitter_cards.html" . }}
+
+  {{ template "_internal/schema.html" . }}
+
+
+  {{ if gt (len .Site.Languages) 1}}
+    <meta name="lang" content="{{ .Site.Language }}" />
+  {{ end }}
+
+
+
+    {{- $styles := resources.Get "css/main.css" | postCSS (dict "config" "./assets/css/postcss.config.js") -}}
+    {{- $styles := $styles| minify | fingerprint | resources.PostProcess -}}
+
+    {{ if $styles }}
+    <link
+      rel="stylesheet"
+      href="{{ $styles.Permalink }}"
+    />
+    {{ else }}
+      <!-- CSS file not found -->
+      <style>body { color: red; }</style>
+    {{ end }}
+
+
+
+  <link rel="icon" type="image/x-icon" href="/icons/sun.png">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2557957536703477" crossorigin="anonymous"></script>
+
+  {{ if .Params.Writer }}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Article",
+      "name": "{{ .Title }}",
+      "author": {
+        "@type": "Person",
+        "name": "{{ .Params.Writer.name }}"
+      },
+        "datePublished": "{{ .Params.Date }}",
+        "description": "{{ .Description }}",
+    }
+  </script>
+  {{ else }}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Article",
+      "name": "{{ .Title }}",
+        "datePublished": "{{ .Params.Date }}",
+        "description": "{{ .Description }}",
+    }
+  </script>
+
+
+
+<!-- Inside <head> OR before </body> -->
+<script>
+  // Apply dark mode on page load
+  (function() {
+    if (localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  })();
+
+  // Expose globally
+  function toggleDarkMode() {
+    document.documentElement.classList.toggle('dark');
+    localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+  }
+</script>
+
+
+<!-- <script type="text/javascript">
+  // put darkmode here because AI says so
+  (() => {
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  })();
+
+  const toggleDarkMode = () => {
+    document.documentElement.classList.toggle('dark');
+    localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+  };
+
+</script> -->
+
+
+  {{ end }}
+</head>

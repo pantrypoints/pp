@@ -1,0 +1,129 @@
+
+
+<div class="section text-center mx-auto px-6 lg:px-24 mt-16">
+  <h3 class="mb-4 text-4xl mb-4 font-extrabold tracking-tight leading-none">{{ .title | markdownify }}</h3>
+
+<div class="wrapper text-center mx-4 px-4">
+  <div class="buttonWrapper" role="tablist"> {{ range $i, $p := .steps }}
+      
+      <button
+        class="tab-button {{ if eq $i 0 }}active{{ end }}"
+        data-id="{{ $p.id }}"
+        role="tab"                  aria-controls="{{ $p.id }}" aria-selected="{{ if eq $i 0 }}true{{ else }}false{{ end }}" id="tab-{{ $p.id }}">
+        {{ i18n "step" }} {{ $p.id }}
+      </button>
+    {{ end }}
+  </div>
+  <div class="contentWrapper">
+    {{ range $i, $p := .steps }}
+      {{/* Remove the hardcoded 'active' class here */}}
+      <div
+        class="contenthow text-center my-2 {{ if eq $i 0 }}active{{ end }}" id="{{ $p.id }}"
+        role="tabpanel"            aria-labelledby="tab-{{ $p.id }}" {{ if ne $i 0 }}hidden{{ end }} >
+        {{ .title | markdownify }}
+        <figure>
+          <img class="p-4 image mx-auto rounded-lg" src="{{ .img | absURL }}" style="object-position: center; object-fit: cover;" loading="lazy" alt=""> </figure>
+      </div>
+    {{ end }}
+  </div>
+</div>
+
+</div>
+
+
+
+<style type="text/css">
+/* static/css/tabs.css */
+
+.buttonWrapper {
+  margin-bottom: 1rem; /* Add some space between buttons and content */
+  display: flex;       /* Arrange buttons nicely */
+  justify-content: center; /* Center the buttons */
+  gap: 0.5rem;         /* Space between buttons */
+}
+
+.tab-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Transition for button styles */
+  border-radius: 4px;
+}
+
+.tab-button:hover {
+  background-color: #e0e0e0;
+}
+
+.tab-button.active {
+  background-color: #007bff; /* Example active button style */
+  color: white;
+  border-color: #0056b3;
+}
+
+.contenthow {
+  opacity: 0; /* Start hidden */
+  max-height: 0; /* Start collapsed */
+  overflow: hidden; /* Hide content while collapsed */
+  transition: opacity 0.4s ease-in-out, max-height 0.4s ease-in-out; /* Smooth transition for fade and height */
+  visibility: hidden; /* Ensure it's not reachable when hidden */
+  /* Remove margin while hidden to prevent empty space */
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.contenthow.active {
+  opacity: 1; /* Fade in */
+  max-height: 1000px; /* Expand to show content (adjust if needed) */
+  visibility: visible; /* Make it visible */
+   /* Restore margins/padding when active */
+  margin-top: 0.5rem !important; /* Adjust original 'my-2' as needed */
+  margin-bottom: 0.5rem !important; /* Adjust original 'my-2' as needed */
+  padding-top: 1rem !important; /* Restore original 'p-4' as needed */
+  padding-bottom: 1rem !important; /* Restore original 'p-4' as needed */
+}
+
+/* Ensure images don't cause layout shifts during load (optional but good) */
+.contenthow figure {
+  min-height: 100px; /* Adjust placeholder height */
+  background-color: #eee; /* Placeholder background */
+}
+
+.contenthow img {
+  display: block; /* Prevents extra space below image */
+}
+</style>
+
+
+
+<script type="text/javascript">
+  const tabs = document.querySelector(".wrapper");
+  const tabButton = document.querySelectorAll(".tab-button");
+  const contents = document.querySelectorAll(".contenthow");
+
+  var step2 = document.getElementById("2");
+  // step2.style.display = 'none';
+  step2.classList.remove("active");
+  var step3 = document.getElementById("3");
+  step3.classList.remove("active");  
+  // step3.style.display = 'none';
+
+  tabs.onclick = e => {
+    const id = e.target.dataset.id;
+    if (id) {
+      tabButton.forEach(btn => {
+        btn.classList.remove("active");
+      });
+      e.target.classList.add("active");
+      e.target.style.display = 'block';
+
+      contents.forEach(content => {
+        content.classList.remove("active");
+      });
+      const element = document.getElementById(id);
+      element.classList.add("active");
+    }
+  }
+</script>

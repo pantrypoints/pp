@@ -1,0 +1,86 @@
+{{ define "main" }}
+
+
+
+<div class="w-screen py-8 sm:py-4">
+  <div class="mx-auto max-w-7xl">
+    <div class="space-y-2">
+      <span class="rounded-full uppercase bg-cyan-500 px-3 py-0.5 text-sm font-semibold leading-5 text-white">
+        {{ i18n "contact" }}
+      </span>
+      <h1 class="text-4xl font-bold tracking-tight dark:text-white text-black sm:text-5xl md:text-6xl pt-4 pb-6">                
+        {{ i18n "sendusmsg" }}
+      </h1>
+
+      <!-- <h3 class="text-xl font-bold tracking-tight dark:text-white">{{ i18n "enterdetails" }}</h3> -->
+            
+      <!-- Registration Form -->
+      <form class="p-6 space-y-4" id="comment" action="https://usebasin.com/f/2468cfc045f0" method="post" target="_blank">
+        <div class="">
+          <div class="py-2">
+            <label for="name" class="">{{ i18n "name" }}</label>
+            <input id="name" name="text" type="text" required class="block w-full rounded border border-gray-600 px-3 py-2 focus:border-teal-500 focus:outline-none focus:ring-teal-500" placeholder="Name">
+          </div>
+          <div class="py-2">
+            <label for="email-address" class="">{{ i18n "email" }}</label>
+            <input id="email-address" name="email" type="email" autocomplete="email" required class="block w-full rounded border border-gray-600 px-3 py-2 focus:border-teal-500 focus:outline-none focus:ring-teal-500" placeholder="Email address">
+          </div>
+          <div class="py-2">
+            <label for="message" class="">{{ i18n "message" }}</label>
+            <textarea id="message" name="message" rows="4" cols="50" required class="block w-full rounded border border-gray-600 px-3 py-2 focus:border-teal-500 focus:outline-none focus:ring-teal-500" placeholder="Your Message"></textarea>
+          </div>
+        </div>
+
+        <div>
+          <button type="submit" class="group relative flex w-full justify-center rounded-md border border-transparent bg-teal-800 py-2 px-4 text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">
+            Send
+          </button>
+        </div>
+      </form>
+        
+        
+      <ul class="py-8">
+        <!-- Email -->
+        <li class="flex items-center space-x-3">
+          <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+          </svg>
+          <a href="mailto:info@example.com" class="text-gray-700 dark:text-gray-300 hover:text-teal-600">
+            pantrypoints@gmail.com
+          </a>
+        </li>
+
+            <!-- Phone -->
+  <!--           <li class="flex items-center space-x-3">
+              <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3 5a2 2 0 012-2h2.28a2 2 0 011.94 1.45l.7 2.33a2 2 0 01-.45 1.88l-1.2 1.2a16 16 0 006.36 6.36l1.2-1.2a2 2 0 011.88-.45l2.33.7a2 2 0 011.45 1.94V19a2 2 0 01-2 2h-1c-9.39 0-17-7.61-17-17V5z"></path>
+              </svg>
+              <a href="tel:+1234567890" class="text-gray-700 dark:text-gray-300 hover:text-teal-600">
+                +1 (234) 567-890
+              </a>
+            </li> -->
+
+          <!-- Facebook -->
+
+        <li class="flex items-center space-x-3">
+          <svg class="w-6 h-6 text-teal-600" fill="currentColor" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M22.675 0h-21.35C.596 0 0 .593 0 1.326v21.348C0 23.404.596 24 1.325 24h11.482V14.709h-3.13v-3.62h3.13V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.463.099 2.794.143v3.24l-1.918.001c-1.504 0-1.796.715-1.796 1.763v2.312h3.588l-.467 3.62h-3.121V24h6.116C23.404 24 24 23.404 24 22.674V1.326C24 .593 23.404 0 22.675 0z">
+            </path>
+          </svg>
+          <a href="https://facebook.com/pantrypoints" target="_blank"
+            class="text-gray-700 dark:text-gray-300 hover:text-teal-600">
+            Facebook
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+{{ end }}

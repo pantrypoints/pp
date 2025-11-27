@@ -1,0 +1,42 @@
+<section class="px-4 py-16">
+  <h2 class="text-3xl font-bold text-center mb-2">{{ .title }}</h2>
+  
+  <div class="flex flex-wrap justify-center gap-6">
+
+    {{ range .cards }}
+      <div class="timeline-card opacity-0 translate-y-10 transition-all duration-700 max-w-sm w-full">
+        <div class="p-6 rounded-xl shadow-lg border-l-4 border-blue-500 h-full">
+          <h3 style="color: {{ .color }};" class="text-4xl dark:text-white font-bold">{{ .year }}</h3>
+          <h4 class="text-xl dark:text-gray-100 font-bold mb-2">{{ .title }}</h4>
+          <p class="text-gray-500">{{ .sub | markdownify }}</p>
+        </div>
+      </div>
+    {{ end }}
+
+  </div>
+</section>
+
+
+<script>
+// timeline.js
+document.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('.timeline-card');
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          // Add a delay based on the card's index
+          entry.target.style.transitionDelay = `${index * 150}ms`;
+          entry.target.classList.add('opacity-100', 'translate-y-0');
+          observer.unobserve(entry.target); // reveal only once
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  cards.forEach((card) => observer.observe(card));
+});
+
+</script>

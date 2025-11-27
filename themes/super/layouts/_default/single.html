@@ -1,0 +1,188 @@
+{{ define "main" }}
+
+
+{{ $allowedSections := slice "services" "trisactions" "pantrypreneur" "company" }}
+{{ if in $allowedSections .Section }}
+
+  {{- partial "jumbotron.html" . -}}
+
+  {{- with .Params.quote -}}
+    {{- partial "quoter.html" . -}}
+  {{- end -}}
+
+  {{- with .Params.time -}}
+    {{- partial "timeline.html" . -}}
+  {{- end -}}
+
+  {{- with .Params.cards -}}
+    {{- partial "cards.html" . -}}
+  {{- end -}}
+
+  {{- with .Params.cards2 -}}
+    {{- partial "cards.html" . -}}
+  {{- end -}}
+
+  {{- with .Params.how -}}
+    {{- partial "how.html" . -}}
+  {{- end -}}
+
+  {{- with .Params.banner -}}
+    {{- partial "banner.html" . -}}
+  {{- end -}}
+
+  {{- with .Params.bannericon -}}
+    {{- partial "banner-icon.html" . -}}
+  {{- end -}}
+
+  {{- with .Params.cards3 -}}
+    {{- partial "cards-icon-link.html" . -}}
+  {{- end -}}
+
+  {{- with .Params.feedback -}}
+    {{- partial "profiles.html" . -}}
+  {{- end -}}
+
+  {{- with .Params.feedback2 -}}
+    {{- partial "profiles.html" . -}}
+  {{- end -}}
+ 
+
+{{ else }}
+
+
+  <article class="container mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-5 gap-8">
+
+    <div class="md:col-span-1"></div>
+
+
+    <!-- Breadcrumbs -->
+    <div class="md:col-span-3">
+      {{ partial "bread.html" . }}
+
+      <!-- Header -->
+      {{ with .Params.heading }}          
+        <small class="py-2" style="text-transform: uppercase">{{ . }}</small>
+      {{- end }}
+
+        
+      <div class="flex items-start justify-between">
+        <div class="flex-1">
+          <h1 class="text-4xl font-bold dark:text-white mb-2">{{ .Title }}</h1>
+          
+
+          <div class="flex items-start space-x-4">
+            <!-- Avatar -->
+            {{ with .Params.icon }}
+              <img src="/icons/{{ . }}.jpg" alt="Author avatar" class="w-8 h-8 inline-block align-baseline shadow-lg rounded-full">
+            {{ end }}
+            <!-- Meta -->
+            <div class="text-sm dark:text-gray-200 text-gray-700">
+              <div>
+                  {{ with .Params.contributors }}          
+                    by 
+                    {{- range . }}
+                      {{ . }}
+                    {{- end }}
+                  {{- end }}
+                  {{ with .Params.author }}          
+                      by {{ . }}
+                  {{- end }} 
+                  {{ with .Params.writer }}   
+                      by <a href="{{ .url }}">{{ .name }}</a>
+                  {{- end }}      
+
+                  {{ with .Params.Date }}
+                    {{ . | time.Format "Jan 2, 2006" }}
+                  {{ end }}
+              </div>
+
+
+              <div class="flex">
+                <svg class="dark:text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+
+                <span class="px-4 dark:text-gray-200"> {{ .ReadingTime }} min read </span>
+
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dark:text-white pl-4"><path d="M15 12h-5"/><path d="M15 8h-5"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></svg> -->
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-scroll-text-icon lucide-scroll-text"><path d="M15 12h-5"/><path d="M15 8h-5"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></svg>
+
+                <span class="dark:text-gray-200"> {{ .WordCount }} words</span>
+
+                {{ if .IsTranslated -}}
+                  {{- $sortedTranslations := sort .Translations "Site.Language.Weight" -}}
+                  {{- $links := apply $sortedTranslations "partial" "translation_link.html" "." -}}
+                  {{- $cleanLinks := apply $links "chomp" "." -}}
+                  {{- $linksOutput := delimit $cleanLinks (i18n "translationsSeparator") -}}
+                  &nbsp;&nbsp; {{ i18n "translationsLabel" }} {{ $linksOutput | safeHTML }}
+                {{- end }}
+
+
+                {{ with .Params.tags -}}
+                  {{ range . }}
+                    <a href="/tags/{{ . | urlize }}" class="mx-2 hover:scale-110 inline-flex items-center gap-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 text-sm py-1 px-2">
+                      {{ . }}
+                    </a>
+                  {{ end }}
+                {{ end }}
+
+              </div>
+
+            </div>
+          </div>
+
+
+          <!-- TOC toggle button -->
+          <details class="group w-fit mt-4 rounded-md shadow-sm transition">
+            <summary class="cursor-pointer flex items-center justify-between gap-2 px-4 py-2 bg-white text-sm dark:bg-slate-700 dark:text-gray-200 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md">
+              <span>Table of Contents</span>
+              <svg
+                class="w-4 h-4 transition-transform duration-300 group-open:rotate-180"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+
+            <!-- Animated content -->
+            <div class="mt-2 p-3 bg-gray-50 rounded-md shadow-inner border border-gray-200 animate-fade-slide text-sm text-gray-700">
+              {{ .TableOfContents }}
+            </div>
+          </details>
+
+
+          <!-- Content dark:text-white text-black-->
+          <div class="mt-6 pb-24 prose text-black dark:prose-headings:text-white dark:text-white prose-lg max-w-none ">
+            {{ .Content }}
+          </div>
+        </div>
+      </div>
+
+      {{ partial "arrows.html" . }}
+
+      {{ partial "comment.html" . }}
+    </div>
+
+    <div class="md:col-span-1">
+      <!-- horiz -->
+      <ins class="adsbygoogle"
+           data-ad-format="vertical"
+           data-full-width-responsive="false"
+           data-ad-client="ca-pub-2557957536703477"
+           data-ad-slot="7902990808"
+           ></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
+</article>
+
+{{ end }}
+
+{{ end }}

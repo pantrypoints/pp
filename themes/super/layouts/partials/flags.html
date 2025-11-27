@@ -1,0 +1,29 @@
+<div class='w-full pb-6'>
+
+  <section class="px-6 lg:px-24 my-4">
+    <div class="px-4 mx-auto text-center lg:pt-16 lg:px-12">
+      {{ with .Heading }}<small style="text-transform: uppercase;">{{ . }}</small>{{ end }} 
+          
+      <h2 class="text-4xl font-bold dark:text-white">{{ .Title }}</h2>
+      <p class="text-lg dark:text-gray-200">{{ .Sub }}</p>
+    </div>
+
+    <br>
+
+ <!-- grid grid-cols-1 lg:grid-cols-3 gap-1 col-span-1 -->
+     <div class="flex mx-auto">
+      {{ range .items }}
+        <div class="text-center mx-auto flex flex-col border rounded-xl shadow-xl dark:text-white m-4 zoom-sm hover:scale-105" data-sal="slide-down">
+          {{ with .link }}<a href="{{ . }}">{{ end }} 
+            <img class="ani rounded-xl mx-auto p-4" src="{{ .img }}" width="100px" alt="" />
+            <div class="inline-block align-text-bottom text-center p-4">
+              <h5 class="mb-2 text-xl font-bold leading-none">{{ .title }}</h5>
+              <p class="mb-3 font-normal leading-none">{{ .sub }}</p>
+            </div>      
+          {{ with .link }}</a>{{ end }} 
+        </div>
+      {{ end }}
+    </div>
+
+  </section>
+</div>

@@ -1,0 +1,22 @@
+<div style="background-color: {{ .Params.c }}; transition: transform 0.3s ease-in-out;" class="text-white dark:text-white rounded-lg shadow-lg w-full mx-auto hover:scale-110">
+  <a href="{{ .Permalink }}">
+    <div class="flex items-center justify-between p-6">
+      <div class="text-center">
+        <h2 class="text-3xl leading-6 font-bold !text-white !dark:text-white">{{ .Title }}</h2>
+        <hr class="my-2 border-white opacity-50 mx-auto w-2/3">
+        {{ with .Params.y }}
+          <p class="text-sm font-semibold !text-white !dark:text-white">{{ . }}</p>
+        {{ end }}
+        <p class="text-sm leading-4 text-white py-2">{{ .Params.heading }}</p>
+        {{- if .Params.showdate }}
+          <div class="leading-none text-gray-500 text-sm">
+             {{ .Params.date.Format "January 2, 2006"  }}
+          </div>
+        {{- end }}
+      </div>
+      <div class="w-24 h-24 rounded-full overflow-hidden ml-4 shadow-md">
+        <img src="/icons/{{ .Params.a }}.jpg" alt="{{ .Title }}" class="object-cover w-full h-full shadow" />
+      </div>
+    </div>
+  </a>
+</div>

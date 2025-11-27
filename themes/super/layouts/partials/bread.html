@@ -1,0 +1,18 @@
+    <div id="breadcrumbs" class="text-gray-700 mb-4" style="text-decoration: none;">
+      <small>
+          {{- range .Ancestors.Reverse }}
+            {{ if .Params.linkTitle }}
+              <a href="{{ .RelPermalink }}" class="dark:text-green-200">{{ .Params.linkTitle }}</a> /
+            {{- else }}
+              <a href="{{ .RelPermalink }}" class="dark:text-green-200">{{ .Params.title }}</a> /          
+            {{- end }}
+          {{- end }}
+
+          {{ if .Params.linkTitle }}
+            <a href="{{ .RelPermalink }}" class="dark:text-green-200">{{ .Params.linkTitle }}</a> /
+          {{- else }}
+            <a href="{{ .RelPermalink }}" class="dark:text-green-200">{{ .Title }}</a>
+          {{- end }}          
+
+      </small>
+    </div>

@@ -1,0 +1,12 @@
+<div class="ani mx-auto text-center">
+  <!-- overflow-hidden -->
+  <a href="{{ .url }}">
+    <div class="aspect-[16/9]">
+      <img loading="lazy" src="{{ .img | relURL }}" alt="{{ .title }}" class="w-full rounded-lg object-cover shadow-lg hover:scale-110">
+    </div>
+    <div class="p-4">
+      <h5 class="leading-5 text-2xl font-bold tracking-tight text-gray-500 dark:text-white ">{{ .title }}</h5>
+      <p class="leading-5 mb-3 dark:text-gray-100 text-gray-600">{{ .sub }}</p>
+    </div>      
+  </a>
+</div>

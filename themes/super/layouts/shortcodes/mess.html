@@ -1,0 +1,8 @@
+<section class="message bg-gray-100 dark:bg-gray-800 rounded-lg mt-6 p-4 shadow">
+  <div class="message-header font-bold text-lg">
+    {{ i18n "updates" }}
+  </div>
+  <div class="message-body">
+    {{ .Inner | markdownify }}
+  </div>
+</section>
