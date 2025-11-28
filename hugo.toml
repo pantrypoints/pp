@@ -68,7 +68,8 @@ pagerSize = 24
       banner = "/photos/holdhands.jpg"
       wow = "Inflation"
 #      youtube = "AfByl9Mywi4 PcRE0Q4uCF4"
-      youtube = "uNt0U7TC7o8"
+      youtube = "LTmuw1Qf5yo"
+
 
     [languages.en.params.trio]  # <-- Single brackets define a table
       intro = "Wealth Creation Without Money"
