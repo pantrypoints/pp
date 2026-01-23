@@ -1,7 +1,7 @@
 {{- $id := .Get 0 -}}
-<div class="aspect-w-16 aspect-h-9 w-full rounded-lg shadow-lg overflow-hidden">
+<div class="relative w-full rounded-lg shadow-lg overflow-hidden" style="padding-bottom: 56.25%;">
   <iframe
-    class="w-full h-full"
+    class="absolute top-0 left-0 w-full h-full"
     src="https://www.youtube.com/embed/{{ $id }}?autoplay=1&mute=1&rel=0"
     title="YouTube video player"
     loading="lazy"

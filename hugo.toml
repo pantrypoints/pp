@@ -67,9 +67,9 @@ pagerSize = 24
       subtitle = "Pantrypoints is a resilient and disruptive new economic system that uses bilateral points, based on the retail price of grains, through meetups in order to stop inflation, allow full employment, and realize the circular economy"
       banner = "/photos/holdhands.jpg"
       wow = "Inflation"
+      youtube = "zLmW8KqL5SE"
 #      youtube = "AfByl9Mywi4 PcRE0Q4uCF4"
-      youtube = "cnfpiAfNEK8"
-
+      # youtube = "cnfpiAfNEK8"
 
     [languages.en.params.trio]  # <-- Single brackets define a table
       intro = "Wealth Creation Without Money"
