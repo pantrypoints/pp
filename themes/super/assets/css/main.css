@@ -176,10 +176,12 @@ blockquote {
   border-left-color: seagreen !important;
 }
 
+
 strong {color: mediumseagreen !important;}
 
 /*a {color: teal !important;}*/
 
-a {
+/*a {
   hover:text-green-600;
 }
+*/
