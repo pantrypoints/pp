@@ -149,6 +149,136 @@ pagerSize = 24
       ]
 
 
+  [languages.vi]
+    contentDir = "content/vi"
+    weight = 1
+    languageName = "Tieng Viet"
+
+    [[languages.vi.menu.main]]
+      identifier = "pantrypoints"
+      name = "Pantrypoints"
+      url = "/trisactions/"
+      weight = 1
+
+    [[languages.vi.menu.main]]
+      identifier = "pantypreneur"
+      name = "Pantrypreneur"
+      url = "/pantrypreneur/"
+      weight = 2
+
+    [[languages.vi.menu.main]]
+      identifier = "services"
+      name = "Services"
+      url = "/services/"
+      weight = 5
+
+    [[languages.vi.menu.main]]
+        name = "Docs"
+        url = "/docs/"
+        weight = 22
+
+    [[languages.vi.menu.main]]
+        name = "News"
+        url = "news"
+        weight = 24
+
+    [[languages.vi.menu.main]]
+        name = "FAQ"
+        url = "faq"
+        weight = 26
+
+    [[languages.vi.menu.main]]
+        name = "About"
+        url = "/services/company"
+        weight = 28
+
+
+    [languages.vi.params]
+      flag = "/flags/vi.png"
+      # title = ""
+      # intro = ""
+      main = "Nền Kinh Tế Tuần Hoàn"
+      subtitle = "Pantrypoints là một hệ thống kinh tế mới có tính đàn hồi cao và đột phá, sử dụng điểm song phương dựa trên giá bán lẻ ngũ cốc, thông qua các buổi gặp mặt nhằm ngăn chặn lạm phát, tạo việc làm toàn bộ và hiện thực hóa nền kinh tế tuần hoàn."
+      banner = "/photos/holdhands.jpg"
+      wow = "Giải Quyết Lạm Phát"
+      youtube = "zLmW8KqL5SE"
+
+    [languages.vi.params.trio]
+      intro = "Tạo ra Của cải Không cần Tiền"
+      subintro = "Cuốn sách *One Red Paper Clip* chứng minh rằng có thể tạo ra của cải từ một chiếc kẹp giấy thành một ngôi nhà mà không cần tiền thông qua trao đổi. Chúng tôi tạo ra một hệ thống trao đổi để dân chủ hóa việc tạo ra của cải cho mọi người."
+      # isactions allow money, moneyless, or multilateral transactions without immediate fulfillment from the other party. This allows the economy to run under any social conditions, allowing true economic freedom"
+      cards = [
+        { img = "/icons/moneyno.png", title = "1: Không Tiền là Ưu tiên", sub = "Chúng tôi tiên phong sử dụng tín dụng hàng đổi hàng được đo bằng điểm, neo theo giá ngũ cốc, như một điểm trung gian hoàn hảo giữa hàng đổi hàng và tiền tệ.", link = "/trisactions/invesure/" },
+        { img = "/icons/money.png", title = "2: Tiền chỉ là Phần Bổ sung", sub = "'Điểm tiền tệ' cho phép thanh toán bằng tiền mặt hoặc không dùng tiền mặt để giảm ma sát trong giao dịch.", link = "/trisactions/banking" },
+        { img = "/icons/cbdc.jpg", title = "3: Đa phương để Mở rộng Quy mô", sub = "Giao dịch xuyên biên giới được thực hiện thông qua hệ thống bù trừ tập trung, ngăn chặn rửa tiền và mất cân bằng thương mại, cho phép hệ thống mở rộng bền vững. Cũng áp dụng cho hàng đổi hàng xuyên biên giới.", link = "/trisactions/pool/" }
+      ]
+
+
+    [languages.vi.params.cta]
+      buttons = [
+        { url = "/register", text = "Đăng ký Danh sách Chờ", color = "" },
+        { url = "https://www.superphysics.org/social/economics", text = "Khám phá Khoa học đằng sau", color = "bg-blue-800 dark:bg-blue-200" }
+      ]
+
+    [[languages.vi.params.quote1]]
+      content = "Trong số người Mông Cổ, vốn không biết dùng tiền tệ, gia súc là thước đo giá trị. Của cải đối với họ là gia súc, như đối với người Tây Ban Nha là vàng và bạc. Trong hai quan niệm đó, quan niệm của người Mông Cổ gần với sự thật hơn."
+      icon = "Adam Smith"
+      author = "Adam Smith"
+      src = "The Wealth of Nations"
+
+    [languages.vi.params.how]
+      title = "Cách thức Hoạt động"
+      steps = [
+        { id = 1, img = "/screens/po1.jpg", title = "Bước 1: Đăng mặt hàng của bạn", sub = "Đăng mặt hàng của bạn bằng giá điểm thay vì giá tiền." },
+        { id = 2, img = "/graphics/meetup.jpg", title = "Step 2: Meetup", sub = "Meet up with the buyers of your item" },
+        { id = 3, img = "/screens/pay.jpg", title = "Step 3: Give your item", sub = "Give your item and record the debt using the cards or the app" }
+      ]
+
+
+    [languages.vi.params.duo]
+      title = "Được Xây dựng ban đầu bởi người Inca"
+      sub = "Người Inca đã tạo ra một hệ thống kinh tế quy mô lớn dựa trên điểm bằng cách sử dụng dây thừng để đại diện cho điểm số. Người Tây Ban Nha đã phá hủy nó và thay thế bằng hệ thống dựa trên tiền tệ dễ khủng hoảng như hiện nay."
+      text = "Đọc thêm về cách hệ thống Inca hoạt động"
+      url = "https://gizmodo.com/the-greatest-mystery-of-the-inca-empire-was-its-strange-1198541254"
+      banner = "/photos/inca.jpg"
+      color = "bg-gradient-to-r from-blue-400 to-green-800 dark:bg-blue-800 hover:bg-green text-white dark:text-white hover:from-cyan-600 hover:to-blue-600 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition duration-300 ease-in-out transform hover:-translate-y-0.5 dark:from-cyan-600 dark:to-blue-600 dark:hover:from-cyan-700 dark:hover:to-blue-700"
+      cards = [
+        { img = "/photos/qullqa.jpg", title = "Chúng tôi hiện thực hóa *qulqa* thành các kho lương thực cộng đồng (*pantries*)"},
+        { img = "/photos/quipu.jpg", title = "Chúng tôi hiện thực hóa *quipu* thành điểm số, từ đó có tên **Pantrypoints**"},
+      ]
+
+    [languages.vi.params.uses]
+      intro = "Bạn thuộc nhóm nào?"
+      subintro = "Pantrypoints dành cho tất cả mọi người."
+      cards = [
+        { url = "/services/build/", img = "/icons/shop.jpg", title = "Tôi là chủ doanh nghiệp siêu nhỏ/nhỏ", sub = "Tôi cần có sự hiện diện trực tuyến dưới dạng website, ứng dụng web, ứng dụng di động hoặc mạng xã hội." },
+        { url = "/services/rewards/", img = "/icons/shopper.jpg", title = "Tôi là người mua sắm thường xuyên", sub = "Tôi muốn nhận phần thưởng cho lòng trung thành với thương hiệu." },
+        { url = "https://circle.pantrypoints.com/", img = "/icons/bum.jpg", title = "Tôi đang thất nghiệp", sub = "Tôi cần có việc làm nhưng không có kỹ năng cần thiết." },
+        { url = "/pantrypreneur/educate", img = "/icons/teacher.jpg", title = "Tôi là giáo viên", sub = "Tôi cần điểm danh và trực quan hóa kết quả học tập của học sinh." },
+        { url = "/trisactions/health/", img = "/icons/yoga.jpg", title = "Tôi quan tâm đến sức khỏe", sub = "Chăm sóc sức khỏe rất đắt đỏ nên tôi cần ăn uống đúng cách." },
+        { url = "/trisactions/invesure/", img = "/icons/investor.jpg", title = "Tôi là nhà đầu tư", sub = "Tôi muốn các khoản đầu tư của mình tạo ra nhiều tác động." },
+        { url = "/trisactions/banking", img = "/icons/banker.jpg", title = "Tôi làm ngân hàng", sub = "Tôi cần một giải pháp cho các cuộc khủng hoảng ngân hàng. Áp lực quá lớn." },
+        { url = "/pantrypreneur/farm/", img = "/icons/farmer.jpg", title = "Tôi là nông dân", sub = "Tôi cần một giải pháp cho biến đổi khí hậu!" },
+        { url = "/services/tax", img = "/icons/gov.jpg", title = "Tôi làm việc trong Chính phủ", sub = "Chúng tôi cần tăng thêm nguồn thu cho dịch vụ công." }
+      ]
+
+    [languages.vi.params.locations]
+      intro = "Địa điểm"
+      subintro = "Đây là các thành phố nơi chúng tôi đang xây dựng nguyên mẫu hệ thống. Hãy tự do thêm thành phố của bạn bằng cách đăng ký vào danh sách chờ."
+      cards = [
+        { img = "/flags/ph.png", url = "/", title = "Las Pinas" },
+        { img = "/flags/vn.png", url = "/", title = "Ho Chi Minh" },
+        { img = "/flags/bt.png", url = "/", title = "Thimpu" },
+        { img = "/flags/pk.png", url = "/", title = "Peshawar" },
+      ]
+
+    [languages.vi.params.testi]
+      intro = "Nhận xét từ các Chuyên gia"
+      cards = [
+        { img = "/avatars/dhanjoo.jpg", sub = "Giáo sư Dhanjoo Ghista - Chủ tịch Quỹ University 2020", title = "Tôi rất thích công trình này: Một Đề xuất Nghiên cứu Nhằm Hình thức Hóa Khoa học về Siêu Kinh tế và Thiết lập Hệ thống Kinh tế Dựa trên Điểm.", link = "http://www.dhanjooghista.com/" },
+        { img = "/avatars/gavin.jpg", sub = "Giáo sư Gavin Kennedy - Chuyên gia hàng đầu thế giới về Adam Smith", title = "Tôi tin rằng nó đang phát triển thành một dự án đáng giá.", link = "http://adamsmithslostlegacy.blogspot.com"}
+      ]
+
      
   [languages.zh]
     contentDir = "content/zh"
